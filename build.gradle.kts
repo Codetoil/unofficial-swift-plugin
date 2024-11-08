@@ -1,26 +1,66 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
-    id("org.jetbrains.intellij") version "1.17.2"
+    id("org.jetbrains.kotlin.jvm") version "2.0.21"
+    id("org.jetbrains.intellij.platform") version "2.1.0"
 }
 
-group = "io.github.codetoil"
+group = "io.codetoil"
 version = "0.1.0"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-}
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("241-EAP-SNAPSHOT")
-    type.set("CL") // Target IDE Platform
+intellijPlatform {
+    pluginConfiguration {
+        id = "unofficial-swift-plugin"
+        name = "Unofficial Swift Plugin"
+        version = "0.1.0"
 
-    plugins.set(listOf(/* Plugin Dependencies */))
+        ideaVersion {
+            sinceBuild = "242"
+            untilBuild = "242.*"
+        }
+
+        vendor {
+            name = "Codetoil"
+            email = "ianthisawesomee@gmail.com"
+            url = "https://www.codetoil.io"
+        }
+    }
+
+    publishing {
+        token = System.getenv("PUBLISH_TOKEN")
+    }
+
+    signing {
+        privateKey = System.getenv("PRIVATE_KEY")
+        password = System.getenv("PRIVATE_KEY_PASSWORD")
+        certificateChain = System.getenv("CERTIFICATE_CHAIN")
+    }
+}
+
+repositories {
+    mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        clion( "2024.2.3")
+
+        pluginVerifier()
+        zipSigner()
+        instrumentationTools()
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
 }
 
 tasks {
@@ -28,23 +68,5 @@ tasks {
     withType<JavaCompile> {
         sourceCompatibility = "17"
         targetCompatibility = "17"
-    }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-    }
-
-    patchPluginXml {
-        sinceBuild.set("241")
-        untilBuild.set("241.*")
-    }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
