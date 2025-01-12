@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.codetoil"
-version = "0.1.0"
+version = "0.1.1"
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
@@ -15,11 +15,11 @@ intellijPlatform {
     pluginConfiguration {
         id = "unofficial-swift-plugin"
         name = "Unofficial Swift Plugin"
-        version = "0.1.0"
+        version = "0.1.1"
 
         ideaVersion {
-            sinceBuild = "242"
-            untilBuild = "242.*"
+            sinceBuild = "243"
+            untilBuild = "243.*"
         }
 
         vendor {
@@ -49,7 +49,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        clion( "2024.2.3")
+        clion( "2024.3.1.1")
 
         pluginVerifier()
         zipSigner()

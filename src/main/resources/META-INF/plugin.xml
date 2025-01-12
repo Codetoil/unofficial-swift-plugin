@@ -1,21 +1,21 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>io.github.codetoil.swift_unofficial_plugin</id>
+    <id>io.codetoil.swift_unofficial_plugin</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Swift (Unofficial)</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="ianthisawesomee@gmail.com">Codetoil</vendor>
+    <vendor email="ianthisawesomee@gmail.com" url="https://www.codetoil.io">Codetoil</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    A plugin that implements the Swift Language.
-  ]]></description>
+      A plugin that implements the Swift Language.
+    ]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -26,6 +26,6 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <platform.lsp.serverSupportProvider
-                implementation="io.github.codetoil.swift_unofficial_plugin.SwiftLspServerSupportProvider"/>
+                implementation="io.codetoil.swift_unofficial_plugin.SwiftLspServerSupportProvider"/>
     </extensions>
 </idea-plugin>

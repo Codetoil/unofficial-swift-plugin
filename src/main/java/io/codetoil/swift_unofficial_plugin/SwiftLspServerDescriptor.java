@@ -1,4 +1,4 @@
-package io.github.codetoil.swift_unofficial_plugin;
+package io.codetoil.swift_unofficial_plugin;
 
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
